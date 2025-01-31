@@ -19,7 +19,7 @@ public class Main {
 
         Writer writer = new Writer(league);
 
-        writer.addLeagueMembers("leaguePLayers.json");
+        writer.addLeagueMembersFromLeagueID(625213);
 
         LeagueManager leagueManager = new LeagueManager(league);
         leagueManager.calculateGameWeeks(23);

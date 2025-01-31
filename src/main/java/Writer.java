@@ -23,11 +23,12 @@ public class Writer {
         this.league = league;
     }
 
-    public void writeTeamData(String playerName, int teamId) {
+    public void writeTeamData(String playerName, int teamId, int totalPoints) {
         JSONObject teamData = reader.returnTeamData(teamId);
 
         Member member = new Member();
         member.setPlayerName(playerName);
+        member.setTotalPoints(totalPoints);
         teamData.get("current");
         JSONArray gameweeks = teamData.getJSONArray("current");
         gameweeks.forEach(gameweek -> {
@@ -38,14 +39,19 @@ public class Writer {
         league.addMember(member);
     }
 
-    public void addLeagueMembers(String fileName) {
-        try {
-            Map<String, Integer> players = returnListOfPlayers(fileName);
-            players.forEach(this::writeTeamData);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void addLeagueMembersFromLeagueID(int leagueID) {
+        JSONObject leagueData = reader.returnLeagueData(leagueID);
+
+        JSONArray leaguePlayers = leagueData.getJSONObject("standings").getJSONArray("results");
+
+        for (int i = 0; i < leaguePlayers.length(); i++) {
+            JSONObject player = leaguePlayers.getJSONObject(i);
+            writeTeamData(player.getString("player_name"), player.getInt("entry"), player.getInt("total"));
+            System.out.println("Added Player: " + player.getString("player_name"));
+
+      }
     }
+
 
     public Map<String, Integer> returnListOfPlayers(String fileName) throws IOException {
 
