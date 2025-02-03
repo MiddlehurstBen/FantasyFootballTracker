@@ -39,12 +39,12 @@ public class Main {
 
 
         for (int j = 1 ; j < 24 ;  j++) {
-            GameweekTable gameweekTable = new GameweekTable(league, j);
+            GameweekCalculator gameweekCalculator = new GameweekCalculator(league, j);
             System.out.println("");
             System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             System.out.println("");
             System.out.println("Gameweek Table " + j + ": ");
-            gameweekTable.getGameweekMap().forEach((key, value) -> System.out.println(key + ": " + value));
+            gameweekCalculator.getGameweekMap().forEach((key, value) -> System.out.println(key + ": " + value));
         }
 
     }

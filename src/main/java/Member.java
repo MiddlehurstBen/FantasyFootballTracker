@@ -4,13 +4,20 @@ import java.util.List;
 public class Member {
 
     private String playerName;
-    private List<Gameweek> gameweeks = new ArrayList<>();
+    private List<GameweekPlayer> gameweekPlayers = new ArrayList<>();
     private int totalPoints;
     private int totalFlames;
 
     private int totalPoop;
 
     public Member() {
+    }
+
+    public GameweekPlayer getGameweek(int gameweekNumber) {
+        return gameweekPlayers.stream()
+                .filter(gameweekPlayer -> gameweekPlayer.getGameweekNumber() == gameweekNumber)
+                .findFirst()
+                .orElse(null);
     }
 
     public String getPlayerName() {
@@ -21,12 +28,12 @@ public class Member {
         this.playerName = playerName;
     }
 
-    public List<Gameweek> getGameweeks() {
-        return gameweeks;
+    public List<GameweekPlayer> getGameweeks() {
+        return gameweekPlayers;
     }
 
-    public void addGameweek(Gameweek gameweek) {
-        gameweeks.add(gameweek);
+    public void addGameweek(GameweekPlayer gameweekPlayer) {
+        gameweekPlayers.add(gameweekPlayer);
     }
 
     public int getTotalPoints() {

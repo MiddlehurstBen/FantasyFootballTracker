@@ -30,10 +30,13 @@ public class Writer {
         member.setPlayerName(playerName);
         member.setTotalPoints(totalPoints);
         teamData.get("current");
+
         JSONArray gameweeks = teamData.getJSONArray("current");
+
         gameweeks.forEach(gameweek -> {
             JSONObject gameweekData = (JSONObject) gameweek;
-            member.addGameweek(new Gameweek(gameweekData.getInt("event"), gameweekData.getInt("points")));
+            member.addGameweek(new GameweekPlayer(gameweekData.getInt("event"), gameweekData.getInt("points")));
+            member.getGameweek(gameweekData.getInt("event")).setPointsLeftOnBench(gameweekData.getInt("points_on_bench"));
         });
 
         league.addMember(member);

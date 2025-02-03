@@ -1,7 +1,6 @@
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Map;
 
 public class LeagueManager {
 
@@ -12,15 +11,15 @@ public class LeagueManager {
         this.league = league;
     }
 
-    public void assignGameweekFlames(GameweekTable gameweekTable) {
-        List<String> top3 = gameweekTable.returnTop3();
+    public void assignGameweekFlames(GameweekCalculator gameweekCalculator) {
+        List<String> top3 = gameweekCalculator.returnTop3();
         for (int i = 0; i < top3.size(); i++) {
             league.getMember(top3.get(i)).addFlames(3 - i);
         }
     }
 
-    public void assignGameweekPoop(GameweekTable gameweekTable) {
-        List<String> bottom3 = gameweekTable.returnBottom3();
+    public void assignGameweekPoop(GameweekCalculator gameweekCalculator) {
+        List<String> bottom3 = gameweekCalculator.returnBottom3();
         for (int i = 0; i < bottom3.size(); i++) {
             league.getMember(bottom3.get(i)).addPoop(3 - i);
         }
@@ -28,11 +27,9 @@ public class LeagueManager {
 
     public void calculateGameWeeks(int currentGameweek) {
         for (int i = 1; i <= currentGameweek; i++) {
-            GameweekTable gameweekTable = new GameweekTable(league, i);
-            assignGameweekFlames(gameweekTable);
-            assignGameweekPoop(gameweekTable);
-            System.out.println("Gameweek " + i + " Flames: " + gameweekTable.returnTop3());
-            System.out.println("Gameweek " + i + " Poop: " + gameweekTable.returnBottom3());
+            GameweekCalculator gameweekCalculator = new GameweekCalculator(league, i);
+            assignGameweekFlames(gameweekCalculator);
+            assignGameweekPoop(gameweekCalculator);
         }
     }
 }

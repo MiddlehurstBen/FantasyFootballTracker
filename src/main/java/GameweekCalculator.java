@@ -2,16 +2,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.LinkedHashMap;
 
-public class GameweekTable {
+public class GameweekCalculator {
 
     private final League league;
     TableSorter tableSorter = new TableSorter();
     Map<String, Integer> gameweekTable = new HashMap<>();
     int gameweekNumber;
 
-    GameweekTable(League league, int gameweekNumber) {
+    GameweekCalculator(League league, int gameweekNumber) {
         this.league = league;
         this.gameweekNumber = gameweekNumber;
         gameweekTable = getGameweekMap();
@@ -21,13 +20,25 @@ public class GameweekTable {
 
         league.getMemberList().forEach(member -> {
             int gameweekPoints = member.getGameweeks().stream()
-                    .filter(gameweek -> gameweek.getGameweekNumber() == gameweekNumber)
-                    .mapToInt(Gameweek::getGameweekPoints)
+                    .filter(gameweekPlayer -> gameweekPlayer.getGameweekNumber() == gameweekNumber)
+                    .mapToInt(GameweekPlayer::getGameweekPoints)
                     .sum();
             gameweekTable.put(member.getPlayerName(), gameweekPoints);
         });
         gameweekTable = tableSorter.sortMapByValueDescending(gameweekTable);
         return gameweekTable;
+    }
+
+    public Map<String, Integer> pointsLeftOnBenchMap(int gameweekNumber) {
+        Map<String, Integer> benchPoints = new HashMap<>();
+        league.getMemberList().forEach(member -> {
+            int benchPointsTotal = member.getGameweeks().stream()
+                    .filter(gameweekPlayer -> gameweekPlayer.getGameweekNumber() == gameweekNumber)
+                    .mapToInt(GameweekPlayer::getPointsLeftOnBench)
+                    .sum();
+            benchPoints.put(member.getPlayerName(), benchPointsTotal);
+        });
+        return tableSorter.sortMapByValueDescending(benchPoints);
     }
 
     public List<String> returnTop3() {

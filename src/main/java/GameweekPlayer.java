@@ -1,12 +1,13 @@
-public class Gameweek {
+public class GameweekPlayer {
 
     private int gameweekNumber;
     private int gameweekPoints;
+    private int pointsLeftOnBench;
 
     private int flames;
     private int poop;
 
-    public Gameweek(int gameweekNumber, int gameweekPoints) {
+    public GameweekPlayer(int gameweekNumber, int gameweekPoints) {
         this.gameweekNumber = gameweekNumber;
         this.gameweekPoints = gameweekPoints;
     }
@@ -33,5 +34,13 @@ public class Gameweek {
 
     public void setPoop(int poop) {
         this.poop = poop;
+    }
+
+    public int getPointsLeftOnBench() {
+        return pointsLeftOnBench;
+    }
+
+    public void setPointsLeftOnBench(int pointsLeftOnBench) {
+        this.pointsLeftOnBench = pointsLeftOnBench;
     }
 }
