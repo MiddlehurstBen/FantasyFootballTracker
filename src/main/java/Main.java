@@ -20,32 +20,15 @@ public class Main {
         Writer writer = new Writer(league);
 
         writer.addLeagueMembersFromLeagueID(625213);
-
-        LeagueManager leagueManager = new LeagueManager(league);
-        leagueManager.calculateGameWeeks(23);
-
-        System.out.println("");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("");
-
-        System.out.println("Flames Table");
-        league.getFlamesTable().forEach((key, value) -> System.out.println(key + ": " + value));
-
-        System.out.println("");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("");
-        System.out.println("Poop Table");
-        league.getPoopTable().forEach((key, value) -> System.out.println(key + ": " + value));
+        int currentGameweek = 23;
 
 
-        for (int j = 1 ; j < 24 ;  j++) {
-            GameweekCalculator gameweekCalculator = new GameweekCalculator(league, j);
-            System.out.println("");
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            System.out.println("");
-            System.out.println("Gameweek Table " + j + ": ");
-            gameweekCalculator.getGameweekMap().forEach((key, value) -> System.out.println(key + ": " + value));
-        }
+        Reporter reporter = new Reporter(league);
+        reporter.weeklyReport(currentGameweek);
+
+        reporter.overallReport();
+
+        reporter.pointsOnBenchReport();
 
     }
 }

@@ -7,6 +7,7 @@ public class Member {
     private List<GameweekPlayer> gameweekPlayers = new ArrayList<>();
     private int totalPoints;
     private int totalFlames;
+    private int totalPointsLeftOnBench;
 
     private int totalPoop;
 
@@ -57,5 +58,12 @@ public class Member {
     }
     public void addPoop(int poop) {
         this.totalPoop += poop;
+    }
+    public void addPointsLeftOnBench(int pointsLeftOnBench) {
+        this.totalPointsLeftOnBench += pointsLeftOnBench;
+    }
+
+    public int getTotalPointsLeftOnBench() {
+        return totalPointsLeftOnBench;
     }
 }

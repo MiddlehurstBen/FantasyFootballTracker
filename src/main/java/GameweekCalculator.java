@@ -8,6 +8,11 @@ public class GameweekCalculator {
     private final League league;
     TableSorter tableSorter = new TableSorter();
     Map<String, Integer> gameweekTable = new HashMap<>();
+
+    public int getGameweekNumber() {
+        return gameweekNumber;
+    }
+
     int gameweekNumber;
 
     GameweekCalculator(League league, int gameweekNumber) {
@@ -41,7 +46,7 @@ public class GameweekCalculator {
         return tableSorter.sortMapByValueDescending(benchPoints);
     }
 
-    public List<String> returnTop3() {
+    public List<String> returnTop3PointsWeekly() {
         List<String> top3 = gameweekTable.entrySet().stream()
                 .limit(3)
                 .map(Map.Entry::getKey)
@@ -49,7 +54,25 @@ public class GameweekCalculator {
         return top3;
     }
 
-    public List<String> returnBottom3() {
+    public Map<String, Integer> getFlames() {
+        Map<String, Integer> flames = new HashMap<>();
+        List<String> top3 = returnTop3PointsWeekly();
+        for (int i = 0; i < top3.size(); i++) {
+            flames.put(top3.get(i), 3 - i);
+        }
+        return flames;
+    }
+
+    public Map<String, Integer> getPoop() {
+        Map<String, Integer> poop = new HashMap<>();
+        List<String> bottom3 = returnBottom3PointsWeekly();
+        for (int i = 0; i < bottom3.size(); i++) {
+            poop.put(bottom3.get(i), i + 1);
+        }
+        return poop;
+    }
+
+    public List<String> returnBottom3PointsWeekly() {
         int skipCount = Math.max(0, gameweekTable.size() - 3);
         List<String> bottom3 = gameweekTable.entrySet().stream()
                 .skip(skipCount)

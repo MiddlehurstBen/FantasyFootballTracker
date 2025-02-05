@@ -18,4 +18,15 @@ public class TableSorter {
                         LinkedHashMap::new // Maintain the sorted order
                 ));
     }
+
+    public Map<String, Integer> returnTop3FromMap(Map<String, Integer> map) {
+        return sortMapByValueDescending(map).entrySet().stream()
+                .limit(3)
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    }
 }
