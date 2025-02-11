@@ -1,3 +1,8 @@
+package Tools;
+
+import Calculators.GameweekCalculator;
+import POJOs.League;
+import Tables.PointsOnBenchTable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Reporter {
@@ -8,7 +13,7 @@ public class Reporter {
 
 
     @Autowired
-    Reporter(League league) {
+    public Reporter(League league) {
         this.league = league;
         leagueManager = new LeagueManager(league);
         pointsOnBenchTable = new PointsOnBenchTable(league);
@@ -27,7 +32,7 @@ public class Reporter {
 
         GameweekCalculator gameweekCalculator = new GameweekCalculator(league, currentGameweek);
         gameweekCalculator.getGameweekMap().forEach((playerName, gameweekPoints) -> {
-            System.out.println(playerName + ": Points: " + gameweekPoints);
+            System.out.println(playerName + ": " + gameweekPoints);
         });
 
         System.out.println("");
@@ -55,6 +60,9 @@ public class Reporter {
             System.out.println("Points Left on Bench: " + member.getGameweek(currentGameweek).getPointsLeftOnBench());
             System.out.println("Flames gained: " + member.getGameweek(currentGameweek).getFlames());
             System.out.println("Poop gained: " + member.getGameweek(currentGameweek).getPoop());
+                if (member.getGameweek(currentGameweek).wasChipPlayed()) {
+                    System.out.println("Chip Used: " + member.getGameweek(currentGameweek).getChipPlayed());
+                }
             System.out.println("");
         });
     }
@@ -89,6 +97,10 @@ public class Reporter {
             System.out.println("Total Flames: " + member.getTotalFlames());
             System.out.println("Total Poop: " + member.getTotalPoop());
             System.out.printf("Total Points Left on Bench: %d\n", member.getTotalPointsLeftOnBench());
+            System.out.println("Chips Played: ");
+                    member.getChipsPlayed().forEach((chipPlayed, gameweekPlayed) -> {
+                        System.out.println("    " + chipPlayed + " : " + "Gameweek " + gameweekPlayed);
+                    });
             System.out.println("");
         });
     }

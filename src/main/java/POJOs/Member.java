@@ -1,21 +1,27 @@
+package POJOs;
+
+import Tools.TableSorter;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Member {
 
     private String playerName;
-    private List<GameweekPlayer> gameweekPlayers = new ArrayList<>();
+    private List<GameweekPlayer> gameweekPlayerList = new ArrayList<>();
     private int totalPoints;
     private int totalFlames;
     private int totalPointsLeftOnBench;
-
     private int totalPoop;
+    private Map<String, Integer> chipsPlayed = new HashMap<>();
 
     public Member() {
     }
 
     public GameweekPlayer getGameweek(int gameweekNumber) {
-        return gameweekPlayers.stream()
+        return gameweekPlayerList.stream()
                 .filter(gameweekPlayer -> gameweekPlayer.getGameweekNumber() == gameweekNumber)
                 .findFirst()
                 .orElse(null);
@@ -30,11 +36,11 @@ public class Member {
     }
 
     public List<GameweekPlayer> getGameweeks() {
-        return gameweekPlayers;
+        return gameweekPlayerList;
     }
 
     public void addGameweek(GameweekPlayer gameweekPlayer) {
-        gameweekPlayers.add(gameweekPlayer);
+        gameweekPlayerList.add(gameweekPlayer);
     }
 
     public int getTotalPoints() {
@@ -65,5 +71,14 @@ public class Member {
 
     public int getTotalPointsLeftOnBench() {
         return totalPointsLeftOnBench;
+    }
+
+    public Map<String, Integer> getChipsPlayed() {
+        gameweekPlayerList.forEach(gameweekPlayer -> {
+            if (gameweekPlayer.wasChipPlayed()) {
+                chipsPlayed.put(gameweekPlayer.getChipPlayed(), gameweekPlayer.getGameweekNumber());
+            }
+        });
+        return TableSorter.sortChipsPlayed(chipsPlayed);
     }
 }

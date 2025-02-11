@@ -1,3 +1,7 @@
+package Tools;
+
+import Calculators.GameweekCalculator;
+import POJOs.League;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -15,7 +19,7 @@ public class LeagueManager {
     public void assignGameweekFlames(GameweekCalculator gameweekCalculator) {
         List<String> top3 = gameweekCalculator.returnTop3PointsWeekly();
         for (int i = 0; i < top3.size(); i++) {
-            league.getMember(top3.get(i)).getGameweek(gameweekCalculator.gameweekNumber).setFlames(3 - i);
+            league.getMember(top3.get(i)).getGameweek(gameweekCalculator.getGameweekNumber()).setFlames(3 - i);
             league.getMember(top3.get(i)).addFlames(3 - i);
         }
     }

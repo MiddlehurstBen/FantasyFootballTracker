@@ -1,12 +1,15 @@
+package POJOs;
+
 public class GameweekPlayer {
 
     private int gameweekNumber;
     private int gameweekPoints;
     private int pointsLeftOnBench;
-
+    private boolean wasChipPlayed = false;
+    private String chipPlayed = null;
     private int flames;
-    private int poop;
 
+    private int poop;
     public GameweekPlayer(int gameweekNumber, int gameweekPoints) {
         this.gameweekNumber = gameweekNumber;
         this.gameweekPoints = gameweekPoints;
@@ -42,5 +45,21 @@ public class GameweekPlayer {
 
     public void setPointsLeftOnBench(int pointsLeftOnBench) {
         this.pointsLeftOnBench = pointsLeftOnBench;
+    }
+
+    public boolean wasChipPlayed() {
+        return wasChipPlayed;
+    }
+
+    public void setWasChipPlayed(boolean wasChipPlayed) {
+        this.wasChipPlayed = wasChipPlayed;
+    }
+
+    public String getChipPlayed() {
+        return chipPlayed;
+    }
+
+    public void setChipPlayed(String chipPlayed) {
+        this.chipPlayed = chipPlayed;
     }
 }

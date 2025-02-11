@@ -1,3 +1,9 @@
+package Tools;
+
+import Calculators.ChipCalculators;
+import POJOs.GameweekPlayer;
+import POJOs.League;
+import POJOs.Member;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,9 +23,10 @@ public class Writer {
 
     Reader reader = new Reader();
     private final League league;
+    ChipCalculators chipCalculators = new ChipCalculators();
 
     @Autowired
-    Writer(League league) {
+    public Writer(League league) {
         this.league = league;
     }
 
@@ -38,6 +45,8 @@ public class Writer {
             member.addGameweek(new GameweekPlayer(gameweekData.getInt("event"), gameweekData.getInt("points")));
             member.getGameweek(gameweekData.getInt("event")).setPointsLeftOnBench(gameweekData.getInt("points_on_bench"));
         });
+
+        chipCalculators.assignUsedChips(member, teamData.getJSONArray("chips"));
 
         league.addMember(member);
     }

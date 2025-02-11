@@ -1,5 +1,7 @@
-import java.util.List;
+package POJOs;
 
+import java.util.List;
+import Calculators.GameweekCalculator;
 import java.util.Map;
 
 public class GameweekLeague {

@@ -1,3 +1,9 @@
+package Calculators;
+
+import POJOs.GameweekPlayer;
+import POJOs.League;
+import Tools.TableSorter;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +21,7 @@ public class GameweekCalculator {
 
     int gameweekNumber;
 
-    GameweekCalculator(League league, int gameweekNumber) {
+    public GameweekCalculator(League league, int gameweekNumber) {
         this.league = league;
         this.gameweekNumber = gameweekNumber;
         gameweekTable = getGameweekMap();
