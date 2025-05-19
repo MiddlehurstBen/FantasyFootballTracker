@@ -1,11 +1,14 @@
-package POJOs;
+package Backend.POJOs;
 
-import Tools.TableSorter;
+import Backend.Tools.TableSorter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class League {
 
@@ -15,10 +18,13 @@ public class League {
     private Map<String, Integer> poopTable = new HashMap<>();
     TableSorter tableSorter = new TableSorter();
 
-    public League(String leagueName) {
-        this.leagueName = leagueName;
+    @Autowired
+    public League() {
     }
 
+    public void setLeagueName(String leagueName) {
+        this.leagueName = leagueName;
+    }
     public String getLeagueName() {
         return leagueName;
     }

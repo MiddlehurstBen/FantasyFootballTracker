@@ -1,6 +1,6 @@
-package POJOs;
+package Backend.POJOs;
 
-import Tools.TableSorter;
+import Backend.Tools.TableSorter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

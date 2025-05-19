@@ -1,8 +1,8 @@
-package Calculators;
+package Backend.Calculators;
 
-import POJOs.GameweekPlayer;
-import POJOs.League;
-import Tools.TableSorter;
+import Backend.POJOs.GameweekPlayer;
+import Backend.POJOs.League;
+import Backend.Tools.TableSorter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +66,7 @@ public class GameweekCalculator {
         for (int i = 0; i < top3.size(); i++) {
             flames.put(top3.get(i), 3 - i);
         }
-        return flames;
+        return tableSorter.sortMapByValueDescending(flames);
     }
 
     public Map<String, Integer> getPoop() {
@@ -75,7 +75,7 @@ public class GameweekCalculator {
         for (int i = 0; i < bottom3.size(); i++) {
             poop.put(bottom3.get(i), i + 1);
         }
-        return poop;
+        return tableSorter.sortMapByValueDescending(poop);
     }
 
     public List<String> returnBottom3PointsWeekly() {

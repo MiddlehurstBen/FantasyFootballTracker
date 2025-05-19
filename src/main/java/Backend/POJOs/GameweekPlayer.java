@@ -1,4 +1,4 @@
-package POJOs;
+package Backend.POJOs;
 
 public class GameweekPlayer {
 

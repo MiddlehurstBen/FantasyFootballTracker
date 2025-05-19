@@ -1,13 +1,9 @@
-package Calculators;
+package Backend.Calculators;
 
-import POJOs.Member;
+import Backend.POJOs.Member;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 

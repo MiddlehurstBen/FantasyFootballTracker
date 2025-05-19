@@ -1,8 +1,8 @@
-package Tools;
+package Backend.Tools;
 
-import Calculators.GameweekCalculator;
-import POJOs.League;
-import Tables.PointsOnBenchTable;
+import Backend.Calculators.GameweekCalculator;
+import Backend.POJOs.League;
+import Backend.Tables.PointsOnBenchTable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Reporter {

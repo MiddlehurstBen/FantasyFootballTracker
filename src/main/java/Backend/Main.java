@@ -1,7 +1,9 @@
-import Config.ApplicationConfig;
-import Tools.Reporter;
-import Tools.Writer;
-import POJOs.League;
+package Backend;
+
+import Backend.Config.ApplicationConfig;
+import Backend.Tools.Reporter;
+import Backend.Tools.Writer;
+import Backend.POJOs.League;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,7 +26,8 @@ public class Main {
         Writer writer = new Writer(league);
 
         writer.addLeagueMembersFromLeagueID(625213);
-        int currentGameweek = 23;
+        System.out.println("League Name: " + league.getLeagueName());
+        int currentGameweek = 37;
 
 
         Reporter reporter = new Reporter(league);

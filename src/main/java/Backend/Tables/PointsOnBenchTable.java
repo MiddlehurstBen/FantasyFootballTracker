@@ -1,8 +1,8 @@
-package Tables;
+package Backend.Tables;
 
-import POJOs.League;
-import POJOs.Member;
-import Tools.TableSorter;
+import Backend.POJOs.League;
+import Backend.POJOs.Member;
+import Backend.Tools.TableSorter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;

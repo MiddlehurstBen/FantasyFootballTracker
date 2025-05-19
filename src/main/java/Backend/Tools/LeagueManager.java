@@ -1,7 +1,7 @@
-package Tools;
+package Backend.Tools;
 
-import Calculators.GameweekCalculator;
-import POJOs.League;
+import Backend.Calculators.GameweekCalculator;
+import Backend.POJOs.League;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

@@ -1,9 +1,9 @@
-package Tools;
+package Backend.Tools;
 
-import Calculators.ChipCalculators;
-import POJOs.GameweekPlayer;
-import POJOs.League;
-import POJOs.Member;
+import Backend.Calculators.ChipCalculators;
+import Backend.POJOs.GameweekPlayer;
+import Backend.POJOs.League;
+import Backend.POJOs.Member;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -53,6 +53,7 @@ public class Writer {
 
     public void addLeagueMembersFromLeagueID(int leagueID) {
         JSONObject leagueData = reader.returnLeagueData(leagueID);
+        league.setLeagueName(leagueData.getJSONObject("league").getString("name"));
 
         JSONArray leaguePlayers = leagueData.getJSONObject("standings").getJSONArray("results");
 
